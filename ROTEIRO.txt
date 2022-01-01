@@ -1,0 +1,17 @@
+ROTEIRO DE JOGO DA FORCA
+
+1 - O jogo inicia e o usuário seleciona a dificuldade;
+
+2 - A pergunta aparece em tela, e abaixo a forca vazia e com os espaços
+
+3 - O usuário digita uma letra ou o nome;
+
+4 - O programa checa se a letra esta contida no nome, ou se o nome está correto
+
+5 - Se a letra estiver no nome, preencher o espaço correspondente
+
+5.1 - Se a letra não estiver no nome, adicionar um membro à forca
+
+5.2 - Se o nome estiver correto, exibir mensagem 'Parabéns, você acertou!'.
+
+6 - 
