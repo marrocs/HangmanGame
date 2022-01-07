@@ -11,7 +11,7 @@ def main():
     if diff == 1:
         quest = diff_easy[randint(0, len(diff_easy)-1)]
         answer_scope = '_' * len(quest[1])
-        answer_list = list('_' for i in quest[1])
+        answer_list = list('_' for _ in quest[1])
         print(quest[0], '\n', answer_scope)
         shots = 5
 
@@ -20,17 +20,22 @@ def main():
 
             if answer in str.lower(quest[1]):
                 print(f'There is "{answer}" in answer!')
+                indexes = []
 
-                index = str.lower(quest[1]).index(answer)
+                for x in range(len(str.lower(quest[1]))):
+                    if str.lower(quest[1][x]) == answer:
+                        indexes.append(x)
 
-                answer_list.insert(index, answer)
-                print()
+                for i in indexes:
+                    answer_list[i] = answer
+
+                print(''.join(answer_list))
 
             else:
                 print('Wrong! Try again.')
                 shots -= 1
 
-        print('You lost!')
+        print("You've been hanged!")
 
     elif diff == 2:
         pass
@@ -39,7 +44,6 @@ def main():
     else:
         print('Difficult not reconized. Try again.')
         main()
-
 
 if __name__ == '__main__':
     main()
