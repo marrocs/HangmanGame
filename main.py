@@ -6,6 +6,9 @@
 from q_and_a import *
 from random import randint
 
+attempts = 5
+letters_tried = []
+
 def main():
 
     print('Welcome to Hangman Game!')
@@ -21,13 +24,14 @@ def main():
     question = question_answer[0]
     correct_answer = [x for x in str.lower(question_answer[1])]
     answer_scope = ['_' for _ in range(len(question_answer[1]))]
-    attempts = 5
+ 
 
     print(question)
     print(' '.join(answer_scope))
 
     def attempt():
 
+        global attempts
         letter = input(f'You got {attempts} tries. Try a letter: ').lower()
 
         if letter in correct_answer:
@@ -46,13 +50,58 @@ def main():
                     answer_scope[idx] = letter
             
             print(' '.join(answer_scope))
+            print(' '.join(correct_answer))
+
+            if (' '.join(answer_scope)) == ' '.join(correct_answer):
+
+                print("Congratulations! You've been save!")
+
+                action1 = input('Want play again? s/n ').lower()
+
+                if action1 == 's':
+                    main()
+                else:
+                    exit()
 
             attempt()
         
+        elif letter in letters_tried:
+
+            print('You already tried this letter. One try out.')
+
+            if attempts == 0:
+
+                print("5 of 5 mistakes. You've been hanged.")
+                action1 = input('Want play again? s/n ').lower()
+
+                if action1 == 's':
+                    main()
+                else:
+                    exit()
+
+            else:
+
+                attempts -= 1
+                print(f'One out. You have {attempts} left.')
+
         else:
 
-            attempts -= 1
-            print(f'One out. You have {attempts} left.')
+            letters_tried.append(letter)
+
+            if attempts == 0:
+
+                print("5 of 5 mistakes. You've been hanged.")
+                action1 = input('Want play again? s/n ').lower()
+
+                if action1 == 's':
+                    main()
+                else:
+                    exit()
+
+            else:
+
+                attempts -= 1
+                print(f'One out. You have {attempts} left.')
 
             attempt()
 
